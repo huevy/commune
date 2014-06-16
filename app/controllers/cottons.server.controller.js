@@ -40,7 +40,9 @@ exports.create = function(req, res) {
 		.fetchByRef(req.body.ref)
 		.then(function(result) {
 			if (result.status === 'OK') {
-				var cotton = new Cotton(result.profile);
+				var cotton = new Cotton(_.extend({}, result.profile, {
+					user: req.user
+				}));
 				cotton.save(function(err) {
 					if (err) {
 						return res.send(400, {
