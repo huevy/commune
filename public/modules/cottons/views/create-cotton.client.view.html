@@ -1,0 +1,23 @@
+<section data-ng-controller="CottonsController">
+    <div class="page-header">
+        <h1>Добавление ватника</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="ref">Твиттер-аккаунт</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="ref" id="ref" class="form-control" placeholder="username, @username или даже https://twitter.com/username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>
