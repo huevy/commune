@@ -107,15 +107,23 @@ exports.delete = function(req, res) {
  * List of Cottons
  */
 exports.list = function(req, res) {
-	Cotton.find().sort('-created').populate('user', 'displayName').exec(function(err, cottons) {
-		if (err) {
-			return res.send(400, {
-				message: getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(cottons);
-		}
-	});
+	var q = Cotton.find().limit(10);
+
+	if (req.query.before) {
+		q.where('created').lt(req.query.before);
+	}
+
+	q.sort('-created')
+		.populate('user', 'displayName')
+		.exec(function(err, cottons) {
+			if (err) {
+				return res.send(400, {
+					message: getErrorMessage(err)
+				});
+			} else {
+				res.jsonp(cottons);
+			}
+		});
 };
 
 /**

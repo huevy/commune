@@ -8,7 +8,9 @@ angular.module('core').factory('Infinitesource', [
 			this.breakdownField = options.breakdownField;
 			this.breakdownParam = options.breakdownParam;
 
+			this.end = false;
 			this.busy = false;
+			this.items = [];
 		};
 
 		InfiniteSource.prototype.onError = function() {
@@ -17,7 +19,10 @@ angular.module('core').factory('Infinitesource', [
 
 		InfiniteSource.prototype.onSuccess = function(items) {
 			this.busy = false;
-			this.items = items;
+			if (!items || !items.length) {
+				this.end = true;
+			}
+			this.items = this.items.concat(items);
 		};
 
 		InfiniteSource.prototype.getLastBreakdown = function() {
