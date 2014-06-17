@@ -63,5 +63,9 @@ angular.module('cottons').controller('CottonsController', ['$scope', '$statePara
 				cottonId: $stateParams.cottonId
 			});
 		};
+
+		$scope.nextPage = function() {
+			debugger
+		};
 	}
 ]);
