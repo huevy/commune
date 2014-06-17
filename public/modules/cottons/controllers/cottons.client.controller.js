@@ -1,8 +1,8 @@
 'use strict';
 
 // Cottons controller
-angular.module('cottons').controller('CottonsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Cottons',
-	function($scope, $stateParams, $location, Authentication, Cottons) {
+angular.module('cottons').controller('CottonsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Cottons', 'Infinitesource',
+	function($scope, $stateParams, $location, Authentication, Cottons, InfiniteSource) {
 		$scope.authentication = Authentication;
 
 		// Create new Cotton
@@ -54,7 +54,12 @@ angular.module('cottons').controller('CottonsController', ['$scope', '$statePara
 
 		// Find a list of Cottons
 		$scope.find = function() {
-			$scope.cottons = Cottons.query();
+			var dataSource = new InfiniteSource({
+				resource: Cottons,
+				breakdownField: 'created',
+				breakdownParam: 'before'
+			});
+			$scope.dataSource = dataSource;
 		};
 
 		// Find existing Cotton
@@ -64,8 +69,5 @@ angular.module('cottons').controller('CottonsController', ['$scope', '$statePara
 			});
 		};
 
-		$scope.nextPage = function() {
-			debugger
-		};
 	}
 ]);

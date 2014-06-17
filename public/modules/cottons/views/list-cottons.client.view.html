@@ -2,8 +2,8 @@
     <div class="page-header">
         <h1>Cottons</h1>
     </div>
-    <div class="list-group" infinite-scroll="nextPage()" infinite-scroll-distance="1" infinite-scroll-disabled="false">
-        <a data-ng-repeat="cotton in cottons" data-ng-href="#!/cottons/{{cotton._id}}" class="list-group-item">
+    <div class="list-group" infinite-scroll="dataSource.nextPage()" infinite-scroll-distance="1" infinite-scroll-disabled="dataSource.busy">
+        <a data-ng-repeat="cotton in dataSource.items" data-ng-href="#!/cottons/{{cotton._id}}" class="list-group-item">
             <button class="pull-right btn btn-primary">Бан!</button>
 			<small class="list-group-item-text">
 				Разместил
@@ -17,7 +17,7 @@
             <p ng-if="cotton.location.length"><span class="label label-default">Где</span> {{cotton.location}}</p>
         </a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!cottons.$resolved || cottons.length">
+    <div class="alert alert-warning text-center" data-ng-hide="!dataSource.items.$resolved || dataSource.items.length">
     	Ни одного ватника. <a href="/#!/cottons/create">Добавить</a>
     </div>
 </section>
