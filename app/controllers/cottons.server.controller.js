@@ -107,7 +107,7 @@ exports.delete = function(req, res) {
  * List of Cottons
  */
 exports.list = function(req, res) {
-	var q = Cotton.find().limit(10);
+	var q = Cotton.find().limit(4);
 
 	if (req.query.before) {
 		q.where('created').lt(req.query.before);

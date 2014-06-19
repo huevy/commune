@@ -2,7 +2,11 @@
     <div class="page-header">
         <h1>Cottons</h1>
     </div>
-    <div class="list-group" infinite-scroll="dataSource.nextPage()" infinite-scroll-distance="1" infinite-scroll-disabled="dataSource.busy || dataSource.end">
+    <div class="list-group"
+        infinite-scroll="dataSource.nextPage()"
+        infinite-scroll-distance="1"
+        infinite-scroll-disabled="dataSource.busy || dataSource.end"
+        infinite-scroll-immediate-check="true">
         <a data-ng-repeat="cotton in dataSource.items" data-ng-href="#!/cottons/{{cotton._id}}" class="list-group-item">
             <button class="pull-right btn btn-primary">Бан!</button>
 			<small class="list-group-item-text">
